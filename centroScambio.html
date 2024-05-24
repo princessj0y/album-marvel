@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="it" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Centro Scambio</title>
+
+</head>
+
+<body class="bg-color vh-100 d-flex flex-column">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary nav-color px-3">
+        <div class="container-fluid">
+            <a class="navbar-brand"><img src="img/logo.png" style="height: 40px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav nav-underline">
+                    <li class="nav-item">
+                        <a class="nav-link   " aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="acquistaFigurine.html">Acquista figurine</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="centroScambio.html">Centro Scambio</a>
+                    </li>
+                </ul>
+                <div class="d-none d-lg-flex justify-content-end ms-auto align-items-center gap-3">
+                    <div id="credito" style="font-size:large;"></div>
+
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn bg-transparent btn-lg" data-bs-toggle="modal"
+                        data-bs-target="#modalAcquisto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                            class="bi bi-credit-card" viewBox="0 0 16 16">
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
+                            <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
+                        </svg>
+                    </button>
+
+                    <!-- Modal -->
+                    <form class="modal fade" id="modalAcquisto" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true" onsubmit="acquista(event)">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Acquista crediti</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="card-body">
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="credito"
+                                                id="inlineRadio1" value="100" required>
+                                            <label class="form-check-label" for="inlineRadio1">100 Crediti</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="credito"
+                                                id="inlineRadio2" value="500" required>
+                                            <label class="form-check-label" for="inlineRadio2">500 Crediti</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="credito"
+                                                id="inlineRadio3" value="1000" required>
+                                            <label class="form-check-label" for="inlineRadio3">1000 Crediti</label>
+                                        </div>
+
+                                        <div class="row g-3">
+                                            <div class="alert alert-danger" role="alert" id="erroreAcquisto" hidden>
+                                                Attenzione, qualcosa è andato storto.
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row"></div>
+                                                <label for="password" class="form-label">
+                                                    Titolare della carta:
+                                                </label>
+                                                <input type="text" class="form-control" id="username" name="username"
+                                                    placeholder="Nome e cognome" required>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row"></div>
+                                                <label for="ncarta" class="form-label">
+                                                    Numero carta
+                                                </label>
+                                                <input type="text" class="form-control" id="ncarta" name="ncarta"
+                                                    maxlength="16" placeholder="0000 0000 0000 0000" required>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="scadenza" class="form-label">Scadenza</label>
+                                                <input type="text" class="form-control" id="scadenza"
+                                                    placeholder="mm/YYYY" maxlength="7" onkeyup="addSlash()">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="cvv" class="form-label">CVV</label>
+                                                <input type="text" class="form-control" id="cvv" placeholder="CVV"
+                                                    maxlength="3">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Annulla</button>
+                                    <button type="submit" class="btn btn-primary">Acquista</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!--DROPDOWN PROFILO-->
+                <div class="dropdown ms-1 ">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" style="background: transparent; border: none;">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                            width="40" height="40" class="rounded-circle" id="imgProfiloNav">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                        <li class="text-start ms-3">
+                            <span class="fw-bold fs-3" id="userNav"> Username </span> <br>
+                            <span class="fw-normal" id="nomeCognomeNav">Nome e Cognome</span><br>
+                            <span class="fw-light" id="dataNascitaNav">Data di nascita</span>
+                        </li>
+                        <li><a class=" dropdown-item" href="/modificaProfilo.html">Modifica profilo</a>
+                        </li>
+                        <li><a class="dropdown-item" href="/modificaPassword.html">Modifica password</a></li>
+                        <li><a class="dropdown-item" href="/login.html">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content ">
+                <div class="modal-body" id="messaggioSuccess">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3 flex-grow-1 d-flex flex-column">
+        <div class="btn-group flex-shrink-0 ">
+            <button class="btn btn-primary active rounded-start-5 " aria-current="page" onclick="show(1)"
+                id="btnCentroScambi">Centro Scambio</button>
+            <button class="btn btn-primary" onclick="show(2)" id="btnStorico">Storico</button>
+            <button class="btn btn-primary rounded-end-5" onclick="show(3)" id="btnRichiesta">Richiedi</button>
+        </div>
+
+
+        <!--DIV PER CENTRO SCAMBIO-->
+        <div class="row row-gap-3 mt-3 justify-content-evenly" id="centroScambioDiv">
+
+            <div class="col-auto " id="myCard" hidden>
+                <div class="card ms-auto me-auto h-100" style="width: 14rem;">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASIAAACuCAMAAAClZfCTAAAAIVBMVEX19fXd3d3z8/Pq6urb29vi4uLx8fHt7e3n5+fk5OTf39/UY198AAACNElEQVR4nO3a4Y6rIBCGYRUE9P4veO0KijB022xSTOd9zj/Xk9AvMgjOMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgDualrGy+t6juhNXB7Sxofe4bmQVIxqt6z2w25jkhMbR9B7ZbcjzbMNMS3wroqX3yG7DtCJae4+sm+lqEFb8FNFU3qtCaAXyilVDSN7+J6Jx7j3+D2gWnkYkFzrK05OI1sV457wJ2avk9T9b1RHZOduTTcdd19qjOqK13GwEIro+QsJ7tPudbi5f8p3iWiSfe8zS0/bh4fYgRdQ6GRJOAJRGdG7oJx+CyaoSEe2Ot0GfZtZRmer3TJ0RpUVryfJIU6/avqmMKJ14XAqPjRlVR0kqI4qlp3xe4uVyVdMYUfzNVdVJ14koleZ6fd+nWnmurTGiPQlXH5HEha7ITmNETrz6sN9fFCOFEdl9yZeOIve/FGVcY0T7VSLK8BT9Sa5Fwqe0GAa1KO1h6xUtvnWzoqUkqs1Y7HmYiuw0RhR/c7UZW57e/tWqN6C4YTVWjKJ861YZUTouCpeM4gkJO/38McpWNXu0hFRbN50Rnb/arKPd/i3ulZu/l7Aby9uInMu+nAm9WUojanWjSQ1+WiOSMxL7+9RGJPXEyDfqjajqjnXSp1jlEW2z7fzG6OdWo5buiB4NRsGYsDQ61YnoNRoiEg7y36GiFbvZiE5Cp7KZ+g29hw4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIbhB3oYDvixwDtCAAAAAElFTkSuQmCC"
+                        class="card-img-top" alt="..." style="width: 100%; height: 14rem; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title text-overflow-ellipsis nome-placeholder">
+                            Placeholder nome
+                        </h5>
+                        <h6 class="card-text text-overflow-ellipsis username-placeholder">Username</h6>
+                        <p class="text-overflow-ellipsis eroe-placeholder">Richiede: Eroe</p>
+                        <span class="d-inline-block err-tooltip w-100" tabindex="0" data-bs-toggle="tooltip"
+                            data-bs-title="Disabled tooltip">
+                            <button type="button" class="btn btn-success w-100 scambia-btn">Scambia</button></span>
+                    </div>
+                </div>
+            </div>
+            <!--FIX PER L'ULTIMA RIGA DI JUSTYFY CONTENT-->
+            <div class="col-auto ">
+                <div class=" ms-auto me-auto" style="width: 14rem; height:0px;"></div>
+            </div>
+            <div class="col-auto ">
+                <div class=" ms-auto me-auto" style="width: 14rem; height:0px;"></div>
+            </div>
+            <div class="col-auto ">
+                <div class=" ms-auto me-auto" style="width: 14rem; height:0px;"></div>
+            </div>
+            <div class="col-auto ">
+                <div class=" ms-auto me-auto" style="width: 14rem; height:0px;"></div>
+            </div>
+        </div>
+
+        <!--DIV PER STORICO-->
+        <div class="row row-gap-3 mt-3 flex-column" id="storicoDiv" hidden>
+            <div class="card w-100 p-0" id="storicoCard" hidden>
+                <div class="row g-0">
+                    <div class="col-auto">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAYFBMVEXDw8MAAABwcHDHx8eKioqkpKS8vLzGxsatra3KysqQkJCenp6AgIB3d3dra2u3t7dZWVlMTEyysrIsLCxTU1NDQ0OUlJQhISEyMjJlZWUMDAw9PT2Dg4N0dHQYGBhGRkaaAXj3AAACVklEQVR4nO3a63KiQBBAYbATxxYQbxtNdjd5/7dMIFwEGbaA1Fo05/tpNFVzZJgBCQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICFEdFJROTRQ5jKxbvVRLF79CCmkW043XbeEeTpBxo8zXs2ZA2i9RSRiQbPUw5l90wDUw2cqIyIYamBHpP9Lho+GEMNNM7P8IfB/8BOg2qbcNaB/8BQg2qt3ww8J5hpkA2kkAwcj50GUdVgN3AymGkQpPW+1zMXfFeHdhror7LBuvt9GsXHzpHaaVAdCC/dw9FddnnYNU0MNXDp4WuUp6j7bCAv3jXDUIPAabo5eia9K46SS9ffDDX44nxbA7kWM2V/f5gYa+CTnwyKVeMuwjIaSL15CMNj+72LaODWt7fNTotsUG8dcq+t2bCEBpq0bqC2dhA2G4ho/cLN1VT3TtJkA00u57R8xQVvdw2ujdlgsYGusnGWEfRwl6B1aWmwQbEQ/v4elf7pSBCGt7cdDTYoF8K/2XftNp0JGqcEew3qhTD7rt27p8FHPRvMNbhZCN/Wge49CcIwqSJYa9BYCD+07yfpxmcsNQgax/6qJ0H4Xn7EWAM99426pfwhwlYDz0LoU1xGm2rgXQh9vu+smWoQXAY2uJhr0LMQ+uR31gw1GPVs1lZMNUj/PeIOqaUGchrV4Cp2GujrqATZZbSVBr274n5bNdJANuOJjQY8ozl6GtRm3sD9yDPb824QuHjqo/ureOYJ8p8TZKJHDwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOB/+wQBph2Iu8J1cQAAAABJRU5ErkJggg=="
+                            class="img-fluid rounded img-ottenuto" alt="..."
+                            style="width: 10rem; height: 10rem; object-fit: cover;">
+                    </div>
+                    <div class="col-auto ms-1">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAYFBMVEXDw8MAAABwcHDHx8eKioqkpKS8vLzGxsatra3KysqQkJCenp6AgIB3d3dra2u3t7dZWVlMTEyysrIsLCxTU1NDQ0OUlJQhISEyMjJlZWUMDAw9PT2Dg4N0dHQYGBhGRkaaAXj3AAACVklEQVR4nO3a63KiQBBAYbATxxYQbxtNdjd5/7dMIFwEGbaA1Fo05/tpNFVzZJgBCQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICFEdFJROTRQ5jKxbvVRLF79CCmkW043XbeEeTpBxo8zXs2ZA2i9RSRiQbPUw5l90wDUw2cqIyIYamBHpP9Lho+GEMNNM7P8IfB/8BOg2qbcNaB/8BQg2qt3ww8J5hpkA2kkAwcj50GUdVgN3AymGkQpPW+1zMXfFeHdhror7LBuvt9GsXHzpHaaVAdCC/dw9FddnnYNU0MNXDp4WuUp6j7bCAv3jXDUIPAabo5eia9K46SS9ffDDX44nxbA7kWM2V/f5gYa+CTnwyKVeMuwjIaSL15CMNj+72LaODWt7fNTotsUG8dcq+t2bCEBpq0bqC2dhA2G4ho/cLN1VT3TtJkA00u57R8xQVvdw2ujdlgsYGusnGWEfRwl6B1aWmwQbEQ/v4elf7pSBCGt7cdDTYoF8K/2XftNp0JGqcEew3qhTD7rt27p8FHPRvMNbhZCN/Wge49CcIwqSJYa9BYCD+07yfpxmcsNQgax/6qJ0H4Xn7EWAM99426pfwhwlYDz0LoU1xGm2rgXQh9vu+smWoQXAY2uJhr0LMQ+uR31gw1GPVs1lZMNUj/PeIOqaUGchrV4Cp2GujrqATZZbSVBr274n5bNdJANuOJjQY8ozl6GtRm3sD9yDPb824QuHjqo/ureOYJ8p8TZKJHDwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOB/+wQBph2Iu8J1cQAAAABJRU5ErkJggg=="
+                            class="img-fluid rounded img-scambiato" alt="..."
+                            style="width: 10rem; height: 10rem; object-fit: cover;">
+                    </div>
+                    <div class="col">
+                        <div class="card-body">
+                            <h5 class="card-title titolo">Eroe scambiato - Eroe ottenuto</h5>
+                            <p class="card-text utente">Scambio effettuato con: username</p>
+                            <p class="card-text "><small class="text-body-secondary data">Last updated 3 mins
+                                    ago</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--DIV PER CENTRO RICHIESTA-->
+        <form class="row row-gap-3 flex-grow-1 m-5" onsubmit="effettuaRichiestaScambio(event)" id="richiestaScambioDiv"
+            hidden>
+            <div class="col-4">
+                <div class="card ms-auto me-auto h-100" style="width: auto;">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASIAAACuCAMAAAClZfCTAAAAIVBMVEX19fXd3d3z8/Pq6urb29vi4uLx8fHt7e3n5+fk5OTf39/UY198AAACNElEQVR4nO3a4Y6rIBCGYRUE9P4veO0KijB022xSTOd9zj/Xk9AvMgjOMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgDualrGy+t6juhNXB7Sxofe4bmQVIxqt6z2w25jkhMbR9B7ZbcjzbMNMS3wroqX3yG7DtCJae4+sm+lqEFb8FNFU3qtCaAXyilVDSN7+J6Jx7j3+D2gWnkYkFzrK05OI1sV457wJ2avk9T9b1RHZOduTTcdd19qjOqK13GwEIro+QsJ7tPudbi5f8p3iWiSfe8zS0/bh4fYgRdQ6GRJOAJRGdG7oJx+CyaoSEe2Ot0GfZtZRmer3TJ0RpUVryfJIU6/avqmMKJ14XAqPjRlVR0kqI4qlp3xe4uVyVdMYUfzNVdVJ14koleZ6fd+nWnmurTGiPQlXH5HEha7ITmNETrz6sN9fFCOFEdl9yZeOIve/FGVcY0T7VSLK8BT9Sa5Fwqe0GAa1KO1h6xUtvnWzoqUkqs1Y7HmYiuw0RhR/c7UZW57e/tWqN6C4YTVWjKJ861YZUTouCpeM4gkJO/38McpWNXu0hFRbN50Rnb/arKPd/i3ulZu/l7Aby9uInMu+nAm9WUojanWjSQ1+WiOSMxL7+9RGJPXEyDfqjajqjnXSp1jlEW2z7fzG6OdWo5buiB4NRsGYsDQ61YnoNRoiEg7y36GiFbvZiE5Cp7KZ+g29hw4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIbhB3oYDvixwDtCAAAAAElFTkSuQmCC"
+                        class="card-img-top" alt="..." style="width: 100%; height: 100%; object-fit: cover;"
+                        id="imgRichiesta">
+                    <div class="card-body mt-3">
+                        <select class="form-select form-select-lg mb-3" aria-label="Large select example" id="richiesta"
+                            onchange="cambiaSfondo(this, document.getElementById('imgRichiesta'))">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 d-flex justify-content-center align-items-center">
+                <button type="submit" class="btn btn-lg btn-success m-auto" style="border-radius: 50%;">
+                    <lottie-player id="lottie-handshake"
+                        src="https://lottie.host/89c6e4cc-6be4-40aa-b6e0-1a321a1bc5e3/gLYjgx6EOF.json"
+                        background="transparent" speed="1" style="width: 300px; height: 300px" loop direction="1"
+                        mode="normal" hover>
+                    </lottie-player>
+
+                    <script>
+                        // Lo script di lottie player aggiunge a runtime dell'svg a cui non
+                        // possiamo accedere dagli stylesheet caricati da questa pagina
+                        // Continuiamo quindi ad ascoltare ogni 100ms per vedere se l'svg
+                        // è stato aggiunto, se lo troviamo aggiungiamo un nuovo stylesheet
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const lottiePlayer = document.getElementById('lottie-handshake')
+                            function injectLottiePlayerStyle() {
+                                // Controlla se l'svg è stato aggiunto
+                                if (!lottiePlayer.shadowRoot) {
+                                    // Non è aggiunto, riprova tra 100ms
+                                    setTimeout(injectLottiePlayerStyle, 100)
+                                    return
+                                }
+                                // Trovato SVG, crea e aggiungi stile
+                                let sheet = new CSSStyleSheet()
+                                sheet.replaceSync(`path { stroke: cornsilk !important }`)
+                                lottiePlayer.shadowRoot.adoptedStyleSheets.push(sheet)
+                            }
+                            injectLottiePlayerStyle();
+                        });
+                    </script>
+                </button>
+            </div>
+            <div class="col-4">
+                <div class="card ms-auto me-auto h-100" style="width: auto;" id="propostaDiv">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASIAAACuCAMAAAClZfCTAAAAIVBMVEX19fXd3d3z8/Pq6urb29vi4uLx8fHt7e3n5+fk5OTf39/UY198AAACNElEQVR4nO3a4Y6rIBCGYRUE9P4veO0KijB022xSTOd9zj/Xk9AvMgjOMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgDualrGy+t6juhNXB7Sxofe4bmQVIxqt6z2w25jkhMbR9B7ZbcjzbMNMS3wroqX3yG7DtCJae4+sm+lqEFb8FNFU3qtCaAXyilVDSN7+J6Jx7j3+D2gWnkYkFzrK05OI1sV457wJ2avk9T9b1RHZOduTTcdd19qjOqK13GwEIro+QsJ7tPudbi5f8p3iWiSfe8zS0/bh4fYgRdQ6GRJOAJRGdG7oJx+CyaoSEe2Ot0GfZtZRmer3TJ0RpUVryfJIU6/avqmMKJ14XAqPjRlVR0kqI4qlp3xe4uVyVdMYUfzNVdVJ14koleZ6fd+nWnmurTGiPQlXH5HEha7ITmNETrz6sN9fFCOFEdl9yZeOIve/FGVcY0T7VSLK8BT9Sa5Fwqe0GAa1KO1h6xUtvnWzoqUkqs1Y7HmYiuw0RhR/c7UZW57e/tWqN6C4YTVWjKJ861YZUTouCpeM4gkJO/38McpWNXu0hFRbN50Rnb/arKPd/i3ulZu/l7Aby9uInMu+nAm9WUojanWjSQ1+WiOSMxL7+9RGJPXEyDfqjajqjnXSp1jlEW2z7fzG6OdWo5buiB4NRsGYsDQ61YnoNRoiEg7y36GiFbvZiE5Cp7KZ+g29hw4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIbhB3oYDvixwDtCAAAAAElFTkSuQmCC"
+                        class="card-img-top" alt="..." style="width: 100%; height: 100%; object-fit: cover;"
+                        id="imgProposta">
+                    <span class="bg-body-secondary text-body badge  rounded-pill position-absolute m-2" id="nCopie">
+                    </span>
+                    <div class="card-body mt-3">
+                        <select class="form-select form-select-lg mb-3" aria-label="Large select example" id="proposta"
+                            onchange="cambiaDoppione()">
+                        </select>
+                    </div>
+                </div>
+        </form>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+    <script src="./script/marvel.js"></script>
+    <script src="./script/utente.js"></script>
+    <script src="./script/profilo.js"></script>
+    <script src="./script/acquistaCrediti.js"></script>
+    <script src="./script/gestioneScambi.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', e => {
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+            creditoUtente();
+            immagineProfilo();
+            setProfiloNav();
+            elencoNonPosseduti();
+            elencoDoppioni();
+            centroScambi();
+            storico();
+        });
+    </script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</body>
+
+</html>

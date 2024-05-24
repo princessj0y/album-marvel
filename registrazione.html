@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Registrazione</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <section class="vh-100">
+        <div class="card mb-3 position-absolute top-50 start-50 translate-middle" style="width: 60rem; ">
+            <form class="card-body" onsubmit="salvaUtente(event)">
+                <h2 class="card-title ">Registrazione</h2>
+                <div class="row">
+                    <div class="col row g-3">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Nome" id="nome" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Cognome" id="cognome" required>
+                        </div>
+                        <div class="col-12">
+                            <div class="row"></div>
+                            <label for="password" class="form-label">
+                                Username:
+                            </label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                onchange="verificaUsername(this)" required>
+                            <span class="text-danger" id="erroreUsername" hidden>Nome utente già registrato, inserisci
+                                di
+                                nuovo.</span>
+                        </div>
+                        <div class="col-12">
+                            <div class="row"></div>
+                            <label for="password" class="form-label">
+                                Inserisci password
+                                <a class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    data-bs-title="La password deve contenere almeno 8 caratteri, almeno un numero ed almeno una lettere maiuscola e minuscola.">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-question-circle" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                        <path
+                                            d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                                    </svg>
+                                </a>
+                            </label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                onchange="controllaPassword(this)" required>
+                            <span class="text-danger" id="errorePassword" hidden>La password non rispetta i
+                                requisti richiesti .</span>
+                        </div>
+                        <div class=" col-12">
+                            <label for="confermaPassword" class="form-label">Inserisci di nuovo la password:</label>
+                            <input type="password" class="form-control" id="confermaPassword" onchange="confermaP(this)"
+                                required>
+                            <span class="text-danger" id="errorePasswordConferma" hidden>Le due password non
+                                corrispondono.</span>
+                        </div>
+                        <div class="col-12">
+                            <label for="data" class="form-label">Data di nascita:</label>
+                            <input type="date" class="form-control" id="datanascita" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="data" class="form-label">Personaggio preferito:</label>
+                            <select class="form-select" name="personaggi" id="personaggi" onchange="cambiaSfondo(this)"
+                                required></select>
+                        </div>
+
+                        <button type="submit" class="btn btn-success ms-auto" style="width: 10%;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                            </svg>
+                        </button>
+
+                    </div>
+
+                    <div class="col">
+                        <img class="img-fluid sfondo" id="sfondo" style="border-radius: 25px;">
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+    <script src="./script/marvel.js"></script>
+    <script src="./script/formRegistrazione.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', e => {
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+            personaggi();
+        });
+
+    </script>
+
+</body>
+
+</html>

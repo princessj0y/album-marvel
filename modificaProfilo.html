@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Modifica profilo</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+
+    <!-- Modal per messaggio "elimina profilo" -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Vuoi eliminare definitivamente il tuo profilo?
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" onclick="eliminaUtente();">Elimina</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="vh-100">
+        <div class="card mb-3 position-absolute top-50 start-50 translate-middle" style="width: 60rem; ">
+            <form class="card-body" onsubmit="modificaUtente(event)">
+                <h2 class="card-title ">Modifica profilo</h2>
+                <div class="row">
+                    <div class="col row g-3">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Nome" id="nome" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Cognome" id="cognome" required>
+                        </div>
+                        <div class="col-12">
+                            <div class="row"></div>
+                            <label for="password" class="form-label">
+                                Username:
+                            </label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                onchange="verificaUsername(this)" disabled>
+
+                        </div>
+                        <div class="col-12">
+                            <label for="data" class="form-label">Data di nascita:</label>
+                            <input type="date" class="form-control" id="datanascita" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="data" class="form-label">Personaggio preferito:</label>
+                            <select class="form-select" name="personaggi" id="personaggi" onchange="cambiaSfondo(this)"
+                                required></select>
+                        </div>
+
+
+
+                        <button type="button" class="btn btn-danger ms-auto round-btn me-2" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" style="width: auto;">
+                            Elimina profilo
+                        </button>
+                        <button type="submit" class="btn btn-success round-btn" style="width: auto;">
+                            Modifica
+                        </button>
+
+
+
+
+
+                    </div>
+
+                    <div class="col">
+                        <img class="img-fluid round-btn" src="" alt="" id="sfondo">
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+    <script src="./script/marvel.js"></script>
+    <script src="./script/utente.js"></script>
+    <script src="./script/profilo.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', e => {
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+            personaggi();
+            setProfilo();
+        });
+
+    </script>
+
+</body>
+
+</html>

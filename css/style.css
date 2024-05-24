@@ -1,0 +1,56 @@
+body {
+  background-color:#131415;
+}
+.bg-color {
+    background-color: #131415;
+}
+
+.nav-color{
+    background: transparent;
+    background-color: transparent;
+}
+
+.bw{
+    filter: grayscale(100%);
+}
+
+.text-overflow-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.round-btn {
+  border-radius: 25px;
+}
+
+/*CSS SOLO PER FORM REGISTRAZIONE*/
+.sfondo {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/*HOVER FLOAT
+https://github.com/IanLunn/Hover
+*/
+.hvr-float {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-float:hover, .hvr-float:focus, .hvr-float:active {
+  -webkit-transform: translateY(-8px);
+  transform: translateY(-8px);
+}
+

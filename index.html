@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="it" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Homepage</title>
+
+</head>
+
+<body class="bg-color">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary nav-color px-3">
+        <div class="container-fluid">
+            <a class="navbar-brand"><img src="img/logo.png" style="height: 40px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav nav-underline">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="acquistaFigurine.html">Acquista figurine</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="centroScambio.html">Centro Scambio</a>
+                    </li>
+                </ul>
+                <div class="d-none d-lg-flex justify-content-end ms-auto align-items-center gap-3">
+                    <div id="credito" style="font-size:large;"> </div>
+
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn bg-transparent" data-bs-toggle="modal"
+                        data-bs-target="#modalAcquisto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                            class="bi bi-credit-card" viewBox="0 0 16 16">
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
+                            <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
+                        </svg>
+                    </button>
+
+                    <!-- Modal -->
+                    <form class="modal fade" id="modalAcquisto" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true" onsubmit="acquista(event)">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Acquista crediti</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="card-body">
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="credito"
+                                                id="inlineRadio1" value="100" required>
+                                            <label class="form-check-label" for="inlineRadio1">100 Crediti</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="credito"
+                                                id="inlineRadio2" value="500" required>
+                                            <label class="form-check-label" for="inlineRadio2">500 Crediti</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="credito"
+                                                id="inlineRadio3" value="1000" required>
+                                            <label class="form-check-label" for="inlineRadio3">1000 Crediti</label>
+                                        </div>
+
+                                        <div class="row g-3">
+                                            <div class="alert alert-danger" role="alert" id="erroreAcquisto" hidden>
+                                                Attenzione, qualcosa è andato storto.
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row"></div>
+                                                <label for="password" class="form-label">
+                                                    Titolare della carta:
+                                                </label>
+                                                <input type="text" class="form-control" id="username" name="username"
+                                                    placeholder="Nome e cognome" required>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row"></div>
+                                                <label for="ncarta" class="form-label">
+                                                    Numero carta
+                                                </label>
+                                                <input type="text" class="form-control" id="ncarta" name="ncarta"
+                                                    maxlength="16" placeholder="0000 0000 0000 0000" required>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="scadenza" class="form-label">Scadenza</label>
+                                                <input type="text" class="form-control" id="scadenza"
+                                                    placeholder="mm/YYYY" maxlength="7" onkeyup="addSlash()">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="cvv" class="form-label">CVV</label>
+                                                <input type="text" class="form-control" id="cvv" placeholder="CVV"
+                                                    maxlength="3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Annulla</button>
+                                    <button type="submit" class="btn btn-primary">Acquista</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!--DROPDOWN PROFILO-->
+                <div class="dropdown ms-1 ">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" style="background: transparent; border: none;">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                            width="40" height="40" class="rounded-circle" id="imgProfiloNav">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                        <li class="text-start ms-3">
+                            <span class="fw-bold fs-3" id="userNav"> Username </span> <br>
+                            <span class="fw-normal" id="nomeCognomeNav">Nome e Cognome</span><br>
+                            <span class="fw-light" id="dataNascitaNav">Data di nascita</span>
+                        </li>
+                        <li><a class=" dropdown-item" href="/modificaProfilo.html">Modifica profilo</a>
+                        </li>
+                        <li><a class="dropdown-item" href="/modificaPassword.html">Modifica password</a></li>
+                        <li><a class="dropdown-item" href="/login.html">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <div class="container mt-2">
+        <h1>Il mio album</h1>
+        <div class="row">
+            <div class="col-6">
+                <form class="input-group mb-3" onsubmit="cerca(event)">
+                    <input type="text" class="form-control round-btn" placeholder="Cerca..."
+                        aria-label="Recipient's username" aria-describedby="button-addon2" id="ricerca">
+                    <button type="submit" class="btn btn-success round-btn" type="button" id="button-addon2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            <div class="col-6">
+                <select class="form-select round-btn px-3" aria-label="Default select example" id="seleziona"
+                    onchange="cerca()">
+                    <option value="0">Mostra tutto</option>
+                    <option value="1">Figurine possedute</option>
+                    <option value="2">Figurine doppioni</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row row-gap-3 justify-content-evenly">
+            <h5 class="text-end me-4" id="possessoFigurine"></h5>
+            <h2 class="text-center" id="zero" hidden>Nessun risultato</h2>
+            <div class="col-auto" id="myCard" hidden>
+                <div class="card ms-auto me-auto h-100 hvr-float" style="width: 14rem;">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASIAAACuCAMAAAClZfCTAAAAIVBMVEX19fXd3d3z8/Pq6urb29vi4uLx8fHt7e3n5+fk5OTf39/UY198AAACNElEQVR4nO3a4Y6rIBCGYRUE9P4veO0KijB022xSTOd9zj/Xk9AvMgjOMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgDualrGy+t6juhNXB7Sxofe4bmQVIxqt6z2w25jkhMbR9B7ZbcjzbMNMS3wroqX3yG7DtCJae4+sm+lqEFb8FNFU3qtCaAXyilVDSN7+J6Jx7j3+D2gWnkYkFzrK05OI1sV457wJ2avk9T9b1RHZOduTTcdd19qjOqK13GwEIro+QsJ7tPudbi5f8p3iWiSfe8zS0/bh4fYgRdQ6GRJOAJRGdG7oJx+CyaoSEe2Ot0GfZtZRmer3TJ0RpUVryfJIU6/avqmMKJ14XAqPjRlVR0kqI4qlp3xe4uVyVdMYUfzNVdVJ14koleZ6fd+nWnmurTGiPQlXH5HEha7ITmNETrz6sN9fFCOFEdl9yZeOIve/FGVcY0T7VSLK8BT9Sa5Fwqe0GAa1KO1h6xUtvnWzoqUkqs1Y7HmYiuw0RhR/c7UZW57e/tWqN6C4YTVWjKJ861YZUTouCpeM4gkJO/38McpWNXu0hFRbN50Rnb/arKPd/i3ulZu/l7Aby9uInMu+nAm9WUojanWjSQ1+WiOSMxL7+9RGJPXEyDfqjajqjnXSp1jlEW2z7fzG6OdWo5buiB4NRsGYsDQ61YnoNRoiEg7y36GiFbvZiE5Cp7KZ+g29hw4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIbhB3oYDvixwDtCAAAAAElFTkSuQmCC"
+                        class="card-img-top" alt="..." style="width: 100%; height: 20rem; object-fit: cover;">
+                    <div class="card-body placeholder-glow">
+                        <a href="" class="link">
+                            <h5 class="card-title placeholder"
+                                style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"> Placeholder nome
+                            </h5>
+                        </a>
+                        <p class="card-text placeholder" id="copie">Nessuna copia</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--FIX PER L'ULTIMA RIGA DI JUSTYFY CONTENT-->
+            <div class="col-auto ">
+                <div class=" ms-auto me-auto" style="width: 14rem; height:0px;"></div>
+            </div>
+            <div class="col-auto ">
+                <div class=" ms-auto me-auto" style="width: 14rem; height:0px;"></div>
+            </div>
+            <div class="col-auto ">
+                <div class=" ms-auto me-auto" style="width: 14rem; height:0px;"></div>
+            </div>
+            <div class="col-auto ">
+                <div class=" ms-auto me-auto" style="width: 14rem; height:0px;"></div>
+            </div>
+        </div>
+
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mt-3">
+                <li class="page-item" id="disabilitaIndietro">
+                    <a class="page-link" href="#" aria-label="Previous" id="indietro">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item" id="npage" hidden><a class="page-link" href="#">1</a></li>
+                <li class="page-item" id="disabilitaAvanti">
+                    <a class="page-link" href="#" aria-label="Next" id="avanti">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+    <script src="./script/marvel.js"></script>
+    <script src="./script/utente.js"></script>
+    <script src="./script/profilo.js"></script>
+    <script src="./script/gestioneAlbum.js"></script>
+
+    <script src="./script/acquistaCrediti.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', e => {
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+            creditoUtente();
+            immagineProfilo();
+            setProfiloNav();
+            album();
+            contaFigurine();
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

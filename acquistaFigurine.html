@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="it" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+        crossorigin="anonymous" />
+    <title>Acquista figurine</title>
+
+</head>
+
+<body class="bg-color">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary nav-color px-3">
+        <div class="container-fluid">
+            <a class="navbar-brand"><img src="img/logo.png" style="height: 40px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav nav-underline">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="acquistaFigurine.html">Acquista figurine</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="centroScambio.html">Centro Scambio</a>
+                    </li>
+                </ul>
+                <div class="d-none d-lg-flex justify-content-end ms-auto align-items-center gap-3">
+                    <div id="credito" style="font-size:large;"></div>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn  bg-transparent btn-lg" data-bs-toggle="modal"
+                        data-bs-target="#modalAcquisto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                            class="bi bi-credit-card" viewBox="0 0 16 16">
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
+                            <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
+                        </svg>
+                    </button>
+
+                    <!-- Modal -->
+                    <form class="modal fade" id="modalAcquisto" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true" onsubmit="acquista(event)">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Acquista crediti</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="card-body">
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="credito"
+                                                id="inlineRadio1" value="100" required>
+                                            <label class="form-check-label" for="inlineRadio1">100 Crediti</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="credito"
+                                                id="inlineRadio2" value="500" required>
+                                            <label class="form-check-label" for="inlineRadio2">500 Crediti</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="credito"
+                                                id="inlineRadio3" value="1000" required>
+                                            <label class="form-check-label" for="inlineRadio3">1000 Crediti</label>
+                                        </div>
+
+
+                                        <div class="row g-3">
+                                            <div class="alert alert-danger" role="alert" id="erroreAcquisto" hidden>
+                                                Attenzione, qualcosa è andato storto.
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row"></div>
+                                                <label for="password" class="form-label">
+                                                    Titolare della carta:
+                                                </label>
+                                                <input type="text" class="form-control" id="username" name="username"
+                                                    placeholder="Nome e cognome" required>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row"></div>
+                                                <label for="ncarta" class="form-label">
+                                                    Numero carta
+                                                </label>
+                                                <input type="text" class="form-control" id="ncarta" name="ncarta"
+                                                    maxlength="16" placeholder="0000 0000 0000 0000" required>
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="scadenza" class="form-label">Scadenza</label>
+                                                <input type="text" class="form-control" id="scadenza"
+                                                    placeholder="mm/YYYY" maxlength="7" onkeyup="addSlash()">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="cvv" class="form-label">CVV</label>
+                                                <input type="text" class="form-control" id="cvv" placeholder="CVV"
+                                                    maxlength="3">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Annulla</button>
+                                    <button type="submit" class="btn btn-primary">Acquista</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!--DROPDOWN PROFILO-->
+                <div class="dropdown ms-1 ">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" style="background: transparent; border: none;">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                            width="40" height="40" class="rounded-circle" id="imgProfiloNav">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                        <li class="text-start ms-3">
+                            <span class="fw-bold fs-3" id="userNav"> Username </span> <br>
+                            <span class="fw-normal" id="nomeCognomeNav">Nome e Cognome</span><br>
+                            <span class="fw-light" id="dataNascitaNav">Data di nascita</span>
+                        </li>
+                        <li><a class=" dropdown-item" href="/modificaProfilo.html">Modifica profilo</a>
+                        </li>
+                        <li><a class="dropdown-item" href="/modificaPassword.html">Modifica password</a></li>
+                        <li><a class="dropdown-item" href="/login.html">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="avvisoBanner" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Crediti insufficienti, impossibile comprare il pacchetto selezionato.
+                    Acquista crediti nello shop, grazie.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="acquistaPacchetti">
+        <div class="row row-gap-3 mt-2">
+            <h1>Acquista pacchetti</h1>
+
+            <div class="col-3 hvr-float" id=" myCard">
+                <div class="card ms-auto me-auto h-100" style="width: 15rem;">
+                    <img src="img/basic.png" class="card-img-top" alt="..."
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Pacchetto singolo</h5>
+                        <p class="card-text">Pacchetto composto da 5 figurine.
+                        </p>
+                        <h5 class="text">100 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z" />
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path
+                                    d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
+                            </svg></h5>
+                        <button id="singolo" class="btn btn-success w-100" onclick="pacchetto(5)">Compra</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3 hvr-float" id="myCard">
+                <div class="card ms-auto me-auto h-100" style="width: 15rem;">
+                    <img src="img/super.png" class="card-img-top" alt="..."
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Pacchetto super</h5>
+                        <p class="card-text">Pacchetto composto da 25 figurine.
+                        </p>
+                        <h5 class="text">500 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z" />
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path
+                                    d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
+                            </svg></h5>
+                        <button id="singolo" class="btn btn-success w-100" onclick="pacchetto(25)">Compra</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3 hvr-float" id=" myCard">
+                <div class="card ms-auto me-auto h-100" style="width: 15rem;">
+                    <img src="img/pacchetto.png" class="card-img-top" alt="..."
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title"> Pacchetto premium</h5>
+                        <p class="card-text">Pacchetto composto da 50 figurine.
+                        </p>
+                        <h5 class="text">1000 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z" />
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path
+                                    d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
+                            </svg></h5>
+                        <a href="#" class="btn btn-success w-100" onclick="pacchetto(50)">Compra</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3 hvr-float" id=" myCard">
+                <div class="card ms-auto me-auto h-100" style="width: 14rem;">
+                    <img src="/img/deluxe.png" class="card-img-top" alt="..."
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title"> Paccheto deluxe</h5>
+                        <p class="card-text">Pacchetto contenente 100 figurine.</p>
+                        <h5 class="text">1500 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z" />
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path
+                                    d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
+                            </svg></h5>
+                        <a href="#" class="btn btn-success w-100" onclick="pacchetto(100)">Compra</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--CARD PER LO SBUSTASMENTO-->
+    <div class="container" id="sbustaDiv" hidden>
+        <div class="row row-gap-3 justify-content-evenly mt-3">
+            <div class="col-auto" id="figurina" hidden>
+                <div class="card ms-auto me-auto h-100 hvr-float" style="width: 14rem;">
+                    <img src="img/default-image-icon-missing-picture-page-vector-40546530.jpg" class="card-img-top"
+                        alt="..." style="width: 100%; height: 20rem; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title text-overflow-ellipsis">Pacchetto singolo</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+    <script src="./script/marvel.js"></script>
+    <script src="./script/utente.js"></script>
+    <script src="./script/acquistaFigurine.js"></script>
+    <script src="./script/profilo.js"></script>
+    <script src="./script/acquistaCrediti.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', e => {
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+            creditoUtente();
+            immagineProfilo();
+            setProfiloNav();
+        });
+    </script>
+
+
+
+</body>
+
+</html>
